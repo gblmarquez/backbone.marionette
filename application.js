@@ -1,10 +1,11 @@
 define([
 	'backbone',
 	'communicator',
-	'hbs!tmpl/welcome'
+	'hbs!tmpl/welcome',
+	'routers/pj'
 ],
 
-function( Backbone, Communicator, Welcome_tmpl ) {
+function( Backbone, Communicator, Welcome_tmpl, pj) {
     'use strict';
 
 	var welcomeTmpl = Welcome_tmpl;
@@ -16,8 +17,12 @@ function( Backbone, Communicator, Welcome_tmpl ) {
 
 	/* Add initializers here */
 	App.addInitializer( function () {
+		
+		new pj();
+
 		document.body.innerHTML = welcomeTmpl({ success: "CONGRATS!" });
 		Communicator.mediator.trigger("APP:START");
+
 	});
 
 	return App;
